@@ -1,0 +1,21 @@
+﻿@model MyTask
+
+@{ 
+    ViewBag.Title = "Add Task";
+}
+
+<form asp-controller="Task" asp-action="AddTask" method="post">
+    <div>
+        <label asp-for="Name"></label>
+        <input asp-for="Name" />
+        <span asp-validation-for="Name"></span>
+    </div>
+    <div>
+        <label asp-for="Description"></label>
+        <input asp-for="Description" />
+        <span asp-validation-for="Description"></span>
+    </div>
+    <div>
+        <button type="submit">Submit</button>
+    </div>
+</form>

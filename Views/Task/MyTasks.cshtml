@@ -1,0 +1,34 @@
+﻿@model IEnumerable<MyTask>
+
+@{
+    ViewData["Title"] = "My Tasks";
+}
+
+
+<div class="row">
+    <div class="container">
+        <div class="row">
+            @foreach (var task in Model){
+            <div class="col-md-4">
+                <div class="card mb">
+                    <img class="card-img-top" src="~/images/task.png" alt="" style="height:100px; width:200px;" />
+                    <div class="card-body mb">
+                        <h2 class="card-title">@task.Name</h2>
+                        <p class="card-text">@task.Description</p>
+                        <div class="col-sm-3">
+                            <form method="get" asp-controller="Task" asp-action="EditTask" asp-route-id="@task.Id">
+                                <button type="submit" class="btn btn-primary">Edit</button>
+                            </form>
+                        </div>
+                        <div class="col-sm-3">
+                            <form method="post" asp-controller="Task" asp-action="DeleteTask" asp-route-id="@task.Id">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                    </div>
+            </div>
+            }
+        </div>
+    </div>
+</div>

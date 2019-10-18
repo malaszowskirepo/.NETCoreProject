@@ -1,0 +1,24 @@
+﻿@model IEnumerable<ApplicationUser>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h2>Registered users:</h2>
+
+<div class="row">
+    @foreach (var user in Model)
+    {
+        <div class="col-sm-4 py-2">
+            <div class="card h-100 border-primary">
+                <div class="card-body">
+                    <h3 class="card-title">Name: @user.UserName</h3>
+                    <p class="card-text">Email: @user.Email</p>
+                    <p class="card-text">City: @user.City</p>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+

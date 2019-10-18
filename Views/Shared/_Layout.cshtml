@@ -1,0 +1,73 @@
+﻿@inject SignInManager<ApplicationUser> signInManager;
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - StudentProject</title>
+
+    <environment include="Development">
+
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">WebApplication1</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+
+                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                    @if (signInManager.IsSignedIn(User))
+                    {
+                        <li><a asp-area="" asp-controller="Task" asp-action="AddTask">Add Task</a></li>
+                        <li><a asp-area="" asp-controller="Task" asp-action="MyTasks">My Tasks</a></li>
+                    }
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    @if (signInManager.IsSignedIn(User))
+                    {
+                        <li><a asp-area="" asp-controller="Account" asp-action="Logout">Logout @User.Identity.Name</a></li>
+                    }
+                    else
+                    {
+                        <li><a asp-area="" asp-controller="Account" asp-action="Register">Register</a></li>
+                        <li><a asp-area="" asp-controller="Account" asp-action="Login">Login</a></li>
+                    }
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <div class="container body-content" style="padding-top: 70px">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; 2019 - StudentProject</p>
+        </footer>
+    </div>
+
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
